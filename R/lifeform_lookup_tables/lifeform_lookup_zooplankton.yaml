@@ -1,4 +1,4 @@
-holo:
+holoplankton:
   - Calanoida
   - Chaetognatha
   - Appendicularia
@@ -35,7 +35,7 @@ ambi:
   - LW05_Cumacea
   - LW25_Mysidae
 
-mero:
+meroplankton:
   - LW21_Annelida
   - Brachyura_zoea
   - Brachyura_mega
