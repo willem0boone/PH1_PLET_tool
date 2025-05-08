@@ -2,12 +2,47 @@
 Status: onboarding the tool in EDITO, testing data pipelines and implementation strategy.
 
 ## Data sources
+
+### Required data format
+CSV file:
+- "Period": YYYY-MM (e.g. 2021-01)
+- "lifeform": str name of lifeform (eg. diatom)
+- "abundance": abundance data (using '.' as decimal), monthly averaged. 
+- "num_samples": int, number of samples used in monthly aggregation (unclear what this is used for).
+
+Example records (note that the .txt file should not have a heading row).
+
+| Period  		| lifeform		| abundance		| num_samples		|
+| -------------   	|-------------	    	|-------------	  	|-------------	  	|
+| 2017-05	  	| cilliate		| 0.4818		| 4			|
+| 2017-06	  	| cilliate		| 4.2124		| 4			|
+| 2017-07		| cilliate		| 3.5438		| 4			|
+| ...			| ...			| ...			| ...			|
+| 2017-05	  	| diatom		| 9659.75519878221	| 4			|
+| 2017-06	  	| diatom		| 31736.4549733857	| 4			|
+| 2017-07		| diatom		| 8265.58566611672	| 4			|
+
+
+Example raw
+```
+"period","lifeform","abundance","num_samples"
+"2017-05","cilliate",0.4818,4
+"2017-06","cilliate",4.2124,4
+"2017-07","cilliate",3.5438,4
+...
+"2017-05","diatom",9659.75519878221,4
+"2017-06","diatom",31736.4549733857,4
+"2017-07","diatom",8265.58566611672,4
+
+
 ### DASSH
 This tool uses as input any CSV file output from the Plankton Lifeform Extraction Tool (PLET) available on DASSH: https://www.dassh.ac.uk/lifeforms/  
-The PLET aggregates the plankton abundance datasets to lifeforms per month for a user-defined spatial area (rectangle or polygon) using a Master Taxa List of functional traits. 
+The PLET aggregates the plankton abundance datasets to lifeforms per month for a user-defined spatial area (rectangle or polygon) using a Master Taxa List of functional traits.
+An example file is stored under /data/lifeforms.csv
 
 ### European Digital Twin of the Ocean
 In the DTO-Bioflow project, a pipeline was tested to extract and prepare the data for PLET tool using EDITO. 
+Using get_data.R, an example dataset can be extracted from Edito and is stored under /data/PH1_edito_test.csv
 
 
 ## PLET tool
@@ -18,7 +53,7 @@ of figures to aid in understanding patterns and trends in plankton lifeform abun
 There are two folders, "R" and "data". The folder "R" contains the scripts for running the tool. It is recomended to run the "R.proj" file (an R project file)
 before opening the R Notebooks script "PH1-FW5_indicator_script" within R-Studio. This ensures that the working directory will automatically be set appropriately.
 This "R" folder also contains a subdirectory "Supporting_scripts", which contains R files holding a set of functions necessary for running the indicator script.
-It is recommended not to modify the files in this folder unless the user is expreienced with writing functions in R.
+It is recommended not to modify the files in this folder unless the user is experienced with writing functions in R.
 
 The "data" directory contains the CSV file downloaded from PLET for which the indicator is being calculated. There is already a prepared CSV file in this folder, 
 entitled "lifeforms.csv", which was downloaded from the PLET. This file is a lifeform abundance time-series from the Continuous Plankton Recorder (CPR) dataset 
