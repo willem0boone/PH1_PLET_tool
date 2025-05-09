@@ -1,6 +1,5 @@
 *.png
 *.idea
-*.csv
 *.xlsx
 .Rproj.user
 *.Rhistory
